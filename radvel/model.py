@@ -290,7 +290,7 @@ class GeneralRVModel(object):
         return vel
 
 
-def _standard_rv_calc(t,params,vector,planet_num=None):
+def _standard_rv_calc(t,params,vector,planet_num=None,**kwargs):
         vel = np.zeros(len(t))
         params_synth = params.basis.v_to_synth(vector)
         if planet_num is None:
@@ -311,7 +311,7 @@ def _standard_rv_calc(t,params,vector,planet_num=None):
             w = params_synth[-2+(5*num_planet)][0]
             k = params_synth[-1+(5*num_planet)][0]
             orbel_synth = np.array([per, tp, e, w, k])
-            vel += kepler.rv_drive(t, orbel_synth)
+            vel += kepler.rv_drive(t, orbel_synth, **kwargs)
         return vel
 
 
