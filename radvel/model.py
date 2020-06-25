@@ -127,6 +127,16 @@ should have only integers as keys."""
                                 self.planet_letters),
                                 None,None,iter(self.items()))
         return red
+        
+    def values(self):
+        """Pretty-print the current values of all parameters.
+        """
+        for i in range(self.num_planets):
+            print('--')
+            print("PLANET {0}:".format(i+1))
+            for pp in self.planet_parameters:
+                print('{0}: {1}'.format(pp, 
+                                        self.__getitem__('{0}{1}'.format(pp,i+1)).value))
 
     def tex_labels(self, param_list=None):
         """Map Parameters keys to pretty TeX code representations.
